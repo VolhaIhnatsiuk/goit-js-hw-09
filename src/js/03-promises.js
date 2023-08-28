@@ -5,9 +5,11 @@ form.addEventListener('submit', handlerSubmit)
 function handlerSubmit(evt) {
   evt.preventDefault()
 
-  let delay = Number(evt.currentTarget.elements.delay.value)
-  const step = Number(evt.currentTarget.elements.step.value)
-  const amount = Number(evt.currentTarget.elements.amount.value)
+  let delay = Number(evt.currentTarget.elements.delay.value);
+  const step = Number(evt.currentTarget.elements.step.value);
+  const amount = Number(evt.currentTarget.elements.amount.value);
+
+  let counter = delay;
 
   for (let i = 1; i <= amount; i += 1) {
     setTimeout(() => {
@@ -18,8 +20,9 @@ function handlerSubmit(evt) {
         .catch(({ position, delay }) => {
           console.log(`❌ Rejected promise ${position} in ${delay}ms`);
         });
-    }, delay);
-    delay += step;
+      delay += step;
+    }, counter);
+    counter += step;
   }
 }
 
